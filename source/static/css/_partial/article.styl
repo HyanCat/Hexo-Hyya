@@ -8,10 +8,10 @@
   &.show{
     
     visibility: visible;
-    -webkit-animation: scale-in 1s;
-    -moz-animation: scale-in 1s;
-    -ms-animation: scale-in 1s;
-    animation: scale-in 1s;
+    -webkit-animation: fade-up-in 1s;
+    -moz-animation: fade-up-in 1s;
+    -ms-animation: fade-up-in 1s;
+    animation: fade-up-in 1s;
   }
   &.hidden{
     visibility: hidden;
@@ -182,8 +182,6 @@
     overflow-x: auto;
     color: #657b83;
     font-size: 10px;
-    border: 1px solid #ccc;
-    text-shadow: 0 1px #444;
     font-family: Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
     code{
       font-size: 14px;
@@ -266,6 +264,10 @@
       visibility: hidden;
     }
   }
+}
+
+.article-share {
+  padding: 10px 20px;
 }
 
 #article-nav{

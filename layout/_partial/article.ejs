@@ -1,8 +1,10 @@
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
   <%if(post.noDate != "true"){%>
+    <!--
     <div class="article-meta">
       <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
     </div>
+    -->
   <%}%>
   <div class="article-inner">
     <% if (theme.fancybox){ %>
@@ -12,9 +14,23 @@
       <header class="article-header">
         <%- partial('post/title', {class_name: 'article-title'}) %>
       </header>
+      
+      <% if (index){ %>
+        <div class="article-info article-info-index">
+          <%if(post.top){%>
+            <div class="article-pop-out tagcloud">
+              <a class="">置顶</a>
+            </div>
+          <% } %>
+          <!-- <%- partial('post/category') %> -->
+          <%- partial('post/tag') %>
+          <div class="clearfix"></div>
+        </div>
+      <% } %>
+
       <% if (!index){ %>
       <div class="article-info article-info-post">
-        <%- partial('post/category') %>
+        <!-- <%- partial('post/category') %> -->
         <%- partial('post/tag') %>
         <div class="clearfix"></div>
       </div>
@@ -26,24 +42,13 @@
       <% } else { %>
         <%- post.content %>
       <% } %>
-    </div>
-    <% if (index){ %>
-    <div class="article-info article-info-index">
-      <%if(post.top){%>
-        <div class="article-pop-out tagcloud">
-          <a class="">置顶</a>
+      <% if (post.excerpt && index){ %>
+        <div class="article-more-link">
+          <a <% if (!theme.excerpt_link){ %>class="hidden"<% } %> href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
         </div>
       <% } %>
-      <%- partial('post/category') %>
-      <%- partial('post/tag') %>
-      <% if (post.excerpt && index){ %>
-        <p class="article-more-link">
-          <a <% if (!theme.excerpt_link){ %>class="hidden"<% } %> href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %> >></a>
-        </p>
-      <% } %>
-      <div class="clearfix"></div>
     </div>
-    <% } %>
+
   </div>
   <% if (!index && theme.share){ %>
       <%- partial('post/share') %>
